@@ -3,14 +3,14 @@ import json
 from Bio import Entrez
 
 # Set the email address to avoid any potential issues with Entrez
-Entrez.email = 'your.email@example.com'
+Entrez.email = 'hollen.zhang@outlook.com'
 
 # Define lists of authors and topics
-authors = ['Bryan Holland', 'Mehmet Oz', 'Anthony Fauci']  # Example authors, adjust as needed
-topics = ['RNA', 'cardiovascular']  # Example topics, adjust as needed
+authors = []  # Example authors, adjust as needed
+topics = ['Wearable', 'PPG', 'Lactate']  # Example topics, adjust as needed
 
 # Define date range
-date_range = '("2012/03/01"[Date - Create] : "2022/12/31"[Date - Create])'
+date_range = '("2020/01/01"[Date - Create] : "2025/08/20"[Date - Create])'
 
 # Build the query dynamically based on the available authors and topics
 queries = []
@@ -21,7 +21,7 @@ if authors:
 
 if topics:
     topic_queries = ['{}[Title/Abstract]'.format(topic) for topic in topics]
-    queries.append('(' + ' OR '.join(topic_queries) + ')')
+    queries.append('(' + ' AND '.join(topic_queries) + ')')
 
 full_query = ' AND '.join(queries) + ' AND ' + date_range
 
